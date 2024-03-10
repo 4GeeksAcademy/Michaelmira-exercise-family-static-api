@@ -7,16 +7,20 @@ update this file to implement the following already declared methods:
 - get_member: Should return a member from the self._members list
 """
 from random import randint
+from pprint import pprint
 
 initial_members = [{ 
+        "id": 1,
         "name": "John",
         "age": 33,
         "lucky_numbers": [7, 13, 22]
     },{
+        "id": 2,
         "name": "Jane",
         "age": 35,
         "lucky_numbers": [7, 13, 22]
     },{
+        "id": 3,
         "name": "Jimmy",
         "age": 5,
         "lucky_numbers": [1]
@@ -49,3 +53,9 @@ class FamilyStructure:
     # this method is done, it returns a list with all the family members
     def get_all_members(self):
         return self._members
+
+
+if __name__ == "__main__":
+
+    pprint(initial_members)
+    
