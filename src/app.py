@@ -25,9 +25,16 @@ def handle_invalid_usage(error):
 def sitemap():
     return generate_sitemap(app)
 
+@app.route('/members', methods=['POST'])
+def handle_add():
+    members = request.json
+
+    # this is how you can use the datastructure by calling its methods
+    jackson_family.add_member(member)
+    return member
+
 @app.route('/members', methods=['GET'])
 def handle_get_members():
-    members = request.json
 
     # this is how you can use the datastructure by calling its methods
     members = jackson_family.get_all_members()
