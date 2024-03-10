@@ -25,7 +25,7 @@ def handle_invalid_usage(error):
 def sitemap():
     return generate_sitemap(app)
 
-@app.route('/members', methods=['POST'])
+@app.route('/member', methods=['POST'])
 def handle_add():
     member = request.json
 
@@ -34,21 +34,31 @@ def handle_add():
     return member
 
 @app.route('/members', methods=['GET'])
-def handle_get_members():
+def handle_get():
 
     # this is how you can use the datastructure by calling its methods
     members = jackson_family.get_all_members()
     response_body = members
     return jsonify(response_body), 200
 
+@app.route('/members', methods=['GET'])
+def handle_get_member():
+
+    # this is how you can use the datastructure by calling its methods
+   member_id = request.args.get('id')
+   print(f"trying to get member id {member_id}")
+   member = jackson_family.get_member(member_id)
+   return member
+
+
 @app.route('/member', methods=['DELETE'])
 def handle_delete():
 
     # this is how you can use the datastructure by calling its methods
     member_id = request.args.get('id')
-    print(f"Trying to get member id {member_id}")
-    member = jackson_family.get_member(member_id)
-    return member
+    print(f"Trying to delete member id {member_id}")
+    member = jackson_family.delete_member(member_id)
+    return None
 
 # /////////////////////////////////////////////////////////////////////////////////////////
 # @app.route('/members', methods=['GET'])
