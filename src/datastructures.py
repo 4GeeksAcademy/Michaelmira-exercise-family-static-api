@@ -8,6 +8,21 @@ update this file to implement the following already declared methods:
 """
 from random import randint
 
+initial_members = [{ 
+        "name": "John",
+        "age": 33,
+        "lucky_numbers": [7, 13, 22]
+    },{
+        "name": "Jane",
+        "age": 35,
+        "lucky_numbers": [7, 13, 22]
+    },{
+        "name": "Jimmy",
+        "age": 5,
+        "lucky_numbers": [1]
+    }
+]
+
 class FamilyStructure:
     def __init__(self, last_name):
         self.last_name = last_name
