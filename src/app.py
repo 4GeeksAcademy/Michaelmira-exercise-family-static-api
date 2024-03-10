@@ -27,7 +27,7 @@ def sitemap():
 
 @app.route('/members', methods=['POST'])
 def handle_add():
-    members = request.json
+    member = request.json
 
     # this is how you can use the datastructure by calling its methods
     jackson_family.add_member(member)
@@ -40,6 +40,15 @@ def handle_get_members():
     members = jackson_family.get_all_members()
     response_body = members
     return jsonify(response_body), 200
+
+@app.route('/member', methods=['DELETE'])
+def handle_delete():
+
+    # this is how you can use the datastructure by calling its methods
+    member_id = request.args.get('id')
+    print(f"Trying to get member id {member_id}")
+    member = jackson_family.get_member(member_id)
+    return member
 
 # /////////////////////////////////////////////////////////////////////////////////////////
 # @app.route('/members', methods=['GET'])
