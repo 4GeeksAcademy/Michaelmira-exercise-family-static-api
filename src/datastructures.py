@@ -31,24 +31,25 @@ class FamilyStructure:
     def __init__(self, last_name):
         self.last_name = last_name
 
-        # example list of members
-        self._members = []
+        #list of members
+        self._members = initial_members
 
     # read-only: Use this method to generate random members ID's when adding members into the list
     def _generateId(self):
         return randint(0, 99999999)
 
     def add_member(self, member):
-        # fill this method and update the return
-        pass
+        member["id"] = self._generateId()
+        self._members.append(member)
 
     def delete_member(self, id):
         # fill this method and update the return
+        #TODO -fill this in
         pass
 
     def get_member(self, id):
-        # fill this method and update the return
-        pass
+        response_body = jackson_family.get_all_members()
+        return jsonify(response_body), 200
 
     # this method is done, it returns a list with all the family members
     def get_all_members(self):
@@ -56,6 +57,14 @@ class FamilyStructure:
 
 
 if __name__ == "__main__":
-
+    p = FamilyStructure("Jackson")
+    p._members = initial_members
+    new_guy = {
+        "name""name": "Rob" ,
+        "age": 36 ,
+        "lucky_numbers": [9,10,11]
+    }
+    p.add_member(new_guy)
+    p.get_member
     pprint(initial_members)
     
