@@ -10,17 +10,17 @@ from random import randint
 from pprint import pprint
 
 initial_members = [{ 
-        "id": 1,
+        "id": 22,
         "name": "John",
         "age": 33,
         "lucky_numbers": [7, 13, 22]
     },{
-        "id": 2,
+        "id": 33,
         "name": "Jane",
         "age": 35,
         "lucky_numbers": [7, 13, 22]
     },{
-        "id": 3,
+        "id": 33,
         "name": "Jimmy",
         "age": 5,
         "lucky_numbers": [1]
@@ -37,6 +37,14 @@ class FamilyStructure:
     # read-only: Use this method to generate random members ID's when adding members into the list
     def _generateId(self):
         return randint(0, 99999999)
+    
+    def get_member_id(self, placement):
+        if 1 <= placement <= len(initial_members):
+            print(self._members[placement - 1]["id"])
+            return self._members[placement - 1]["id"]
+        else:
+            print("was not able to return a memeber id by placement")
+            return None
 
     def add_member(self, member):
         member["id"] = self._generateId()
@@ -57,14 +65,16 @@ class FamilyStructure:
 
 
 if __name__ == "__main__":
-    p = FamilyStructure("Jackson")
-    p._members = initial_members
+    family = FamilyStructure("Jackson")
+    family._members = initial_members
     new_guy = {
         "name""name": "Rob" ,
         "age": 36 ,
         "lucky_numbers": [9,10,11]
     }
-    p.add_member(new_guy)
-    p.get_member
+    family.add_member(new_guy)
+    family.get_member
     pprint(initial_members)
-    
+    print("\n")
+    family.get_member_id(1)
+
