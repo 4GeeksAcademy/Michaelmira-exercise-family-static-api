@@ -20,7 +20,7 @@ initial_members = [{
         "age": 35,
         "lucky_numbers": [7, 13, 22]
     },{
-        "id": 33,
+        "id": 3433,
         "name": "Jimmy",
         "age": 5,
         "lucky_numbers": [1]
@@ -30,51 +30,37 @@ initial_members = [{
 class FamilyStructure:
     def __init__(self, last_name):
         self.last_name = last_name
-
         #list of members
         self._members = initial_members
 
     # read-only: Use this method to generate random members ID's when adding members into the list
     def _generateId(self):
         return randint(0, 99999999)
-    
-    def get_member_id(self, placement):
-        if 1 <= placement <= len(initial_members):
-            print(self._members[placement - 1]["id"])
-            return self._members[placement - 1]["id"]
-        else:
-            print("was not able to return a memeber id by placement")
-            return None
+        
+# Method GET /member/<int:id> should exist
 
     def add_member(self, member):
         member["id"] = self._generateId()
         self._members.append(member)
+        
 
     def delete_member(self, id):
         # fill this method and update the return
         #TODO -fill this in
         pass
 
-    def get_member(self, id):
-        response_body = jackson_family.get_all_members()
-        return jsonify(response_body), 200
+    def get_member(self, member_id):
+        for member in self._members:
+            if member["id"] == member_id:
+                return member
+        return None
 
     # this method is done, it returns a list with all the family members
     def get_all_members(self):
         return self._members
 
-
 if __name__ == "__main__":
     family = FamilyStructure("Jackson")
     family._members = initial_members
-    new_guy = {
-        "name""name": "Rob" ,
-        "age": 36 ,
-        "lucky_numbers": [9,10,11]
-    }
-    family.add_member(new_guy)
-    family.get_member
+    # family.add_member(new_guy)
     pprint(initial_members)
-    print("\n")
-    family.get_member_id(1)
-

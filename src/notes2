@@ -1,0 +1,75 @@
+# Datastructures
+
+# def get_member_id(self, placement):
+#     if 1 <= placement <= len(initial_members):
+#         print(self._members[placement - 1]["id"])
+#         return self._members[placement - 1]["id"]
+#     else:
+#         print("was not able to return a memeber id by placement")
+#         return None
+        
+
+        
+# def get_member(self, id):
+#     for member in self._members:
+#         if member["id"] == id:
+#             return member
+#     return None
+
+# if __name__ == "__main__":
+#     family = FamilyStructure("Jackson")
+#     family._members = initial_members
+#     new_guy = {
+#         "id"
+#         "name": "Rob" ,
+#         "age": 36 ,
+#         "lucky_numbers": [9,10,11]
+#     }
+#     family.add_member(new_guy)
+#     pprint(initial_members)
+#     print("\n")
+#     family.get_member_id(1)
+
+# app.py
+
+# @app.route('/members', methods=['GET'])
+# def handle_get_member():
+
+#     # this is how you can use the datastructure by calling its methods
+#    member_id = request.args.get('id')
+#    print(f"trying to get member id {member_id}")
+#    member = jackson_family.get_member(member_id)
+#    return member
+
+# @app.route('/member', methods=['DELETE'])
+# def handle_delete():
+
+#     # this is how you can use the datastructure by calling its methods
+#     member_id = request.args.get('id')
+#     print(f"Trying to delete member id {member_id}")
+#     member = jackson_family.delete_member(member_id)
+#     return None
+
+# @app.route('/member', methods=['GET'])
+# def get_member_by_id(member_id):
+#     member = jackson_family.get_member_id(member_id)
+
+#     if member:
+#         return jsonify(member), 200
+#     else:
+#         return jsonify({"error": "Memeber not found"}), 404
+
+# /////////////////////////////////////////////////////////////////////////////////////////
+# @app.route('/members', methods=['GET'])
+# def handle_get_members():
+#     member = request.json
+
+#     # this is how you can use the Family datastructure by calling its methods
+#     members = jackson_family.get_all_members()
+#     response_body = {
+#         "hello": "world",
+#         "family": members
+#     }
+
+
+#     return jsonify(response_body), 200
