@@ -10,18 +10,15 @@ from random import randint
 from pprint import pprint
 
 initial_members = [{ 
-        "id": 22,
-        "name": "John",
+        "first_name": "John",
         "age": 33,
         "lucky_numbers": [7, 13, 22]
     },{
-        "id": 33,
-        "name": "Jane",
+        "first_name": "Jane",
         "age": 35,
-        "lucky_numbers": [7, 13, 22]
+        "lucky_numbers": [10, 14, 3]
     },{
-        "id": 3433,
-        "name": "Jimmy",
+        "first_name": "Jimmy",
         "age": 5,
         "lucky_numbers": [1]
     }
@@ -30,8 +27,21 @@ initial_members = [{
 class FamilyStructure:
     def __init__(self, last_name):
         self.last_name = last_name
-        #list of members
-        self._members = initial_members
+        self._members = []
+
+        for member in initial_members:
+            member_with_id = {
+                "id": self._generateId(),
+                "first_name": member["first_name"],
+                "last_name": last_name,
+                "age": member["age"],
+                "lucky_numbers": member["lucky_numbers"],
+            }
+            self._members.append(member_with_id)
+
+        print("added members")
+        pprint(self._members)
+        
 
     # read-only: Use this method to generate random members ID's when adding members into the list
     def _generateId(self):
@@ -40,19 +50,55 @@ class FamilyStructure:
 # Method GET /member/<int:id> should exist
 
     def add_member(self, member):
-        member["id"] = self._generateId()
-        self._members.append(member)
-        
+
+        # member looks like:
+        # {
+        #     "first_name": "Michael",
+        #     "age": 25,
+        #     "lucky_numbers": [10,20]
+        # }
+
+        # need to add:
+        # {
+        #     "first_name": "Michael",
+        #     "last_name": "jackson",
+        #     "age": 25,
+        #     "lucky_numbers": [10,20]
+        #     "id": 120931
+        # }
+
+        #TODO - add id maybe
+
+        member_with_id = {
+            "first_name": member["first_name"],
+            "last_name": self.last_name,
+            "age": member["age"],
+            "lucky_numbers": member["lucky_numbers"],
+        }
+
+        if "id" in member and isinstance(member["id"], int):
+            member_with_id["id"] = member["id"]
+        else:
+            member_with_id["id"] = self._generateId()
+
+        self._members.append(member_with_id)
 
     def delete_member(self, id):
-        # fill this method and update the return
-        #TODO -fill this in
-        pass
-
-    def get_member(self, member_id):
+        for member_idx, member in enumerate(self._members):
+            if member["id"] == id:
+                del self._members[member_idx]
+                return id
+        return None
+    
+    def get_member(self, id):
+        #print(f"get member called with id {id}")
+        #pprint(self._members)
         for member in self._members:
-            if member["id"] == member_id:
+            if member["id"] == id:
+                #print("member found")
+                #pprint(member)
                 return member
+        #print("member not found")
         return None
 
     # this method is done, it returns a list with all the family members
